@@ -56,7 +56,7 @@ public class CarService {
          *   Remove the below code as part of your implementation.
          */
         Car car = repository.findById(id).get();
-        if(car.getId() == null) {
+         if(car.getId() == null) {
             throw new CarNotFoundException();
         }
 
@@ -95,6 +95,7 @@ public class CarService {
             return repository.findById(car.getId())
                     .map(carToBeUpdated -> {
                         carToBeUpdated.setDetails(car.getDetails());
+                        carToBeUpdated.setCondition(car.getCondition());
                         carToBeUpdated.setLocation(car.getLocation());
                         return repository.save(carToBeUpdated);
                     }).orElseThrow(CarNotFoundException::new);

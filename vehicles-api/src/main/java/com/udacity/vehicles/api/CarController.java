@@ -9,6 +9,7 @@ import com.udacity.vehicles.service.CarService;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 
@@ -104,7 +105,8 @@ class CarController {
          */
 
         car.setId(id);
-        carService.save(car);
+        car = carService.save(car);
+
         Resource<Car> resource = assembler.toResource(car);
         return ResponseEntity.ok(resource);
     }
